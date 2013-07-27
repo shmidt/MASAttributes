@@ -6,55 +6,27 @@
 #
 Pod::Spec.new do |s|
   s.name         = "mas-attributes"
-  s.version      = "0.0.1"
+  s.version      = "1.0.0"
   s.summary      = "NSMutableAttributedString helper for easy to add attributes for the substring."
-  # s.description  = <<-DESC
-  #                   An optional longer description of mas-attributes
-  #
-  #                   * Markdown format.
-  #                   * Don't worry about the indent, we strip it!
-  #                  DESC
+  s.description  = "    - (void)addColor:(UIColor *)color substring:(NSString *)substring;
+    - (void)addBackgroundColor:(UIColor *)color substring:(NSString *)substring;
+    - (void)addUnderlineForSubstring:(NSString *)substring;
+    - (void)addStrikeThrough:(int)thickness substring:(NSString *)substring;
+    - (void)addShadowColor:(UIColor *)color width:(int)width height:(int)height radius:(int)radius substring:(NSString *)substring;
+    - (void)addFontWithName:(NSString *)fontName size:(int)fontSize substring:(NSString *)substring;
+    - (void)addAlignment:(NSTextAlignment)alignment substring:(NSString *)substring;
+    - (void)addColorToRussianText:(UIColor *)color;
+    - (void)addStrokeColor:(UIColor *)color thickness:(int)thickness substring:(NSString *)substring;
+    - (void)addVerticalGlyph:(BOOL)glyph substring:(NSString *)substring;"
   s.homepage     = "https://github.com/shmidt/mas-attributes"
-  # s.screenshots  = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
-
-  # Specify the license type. CocoaPods detects automatically the license file if it is named
-  # 'LICENCE*.*' or 'LICENSE*.*', however if the name is different, specify it.
-  s.license      = 'MIT (example)'
-  # s.license      = { :type => 'MIT (example)', :file => 'FILE_LICENSE' }
-
-  # Specify the authors of the library, with email addresses. You can often find
-  # the email addresses of the authors by using the SCM log. E.g. $ git log
-  #
-  s.author       = { "Dmitry Shmidt" => "dima.shmidt@me.com" }
-  # s.authors      = { "Dmitry Shmidt" => "dima.shmidt@me.com", "other author" => "and email address" }
-  #
-  # If absolutely no email addresses are available, then you can use this form instead.
-  #
-  # s.author       = 'Dmitry Shmidt', 'other author'
-
-  # Specify the location from where the source should be retrieved.
-  #
-  s.source       = { :git => "https://github.com/shmidt/mas-attributes.git", :commit => "b60d0b4f7da4b2674754a40da71725fee4c62ec3" }
-
-
-  # If this Pod runs only on iOS or OS X, then specify the platform and
-  # the deployment target.
-  #
-  # s.platform     = :ios, '5.0'
-
-  # ――― MULTI-PLATFORM VALUES ――――――――――――――――――――――――――――――――――――――――――――――――― #
-
-  # If this Pod runs on both platforms, then specify the deployment
-  # targets.
-  #
-  # s.ios.deployment_target = '5.0'
-  # s.osx.deployment_target = '10.7'
-
+  s.author       = { "Dmitry Shmidt" => "mail@shmidtlab.com" }
+  s.source       = { :git => "https://github.com/shmidt/mas-attributes.git", :tag => "1.0.0" }
+  s.platform     = :ios, '6.0'
   # A list of file patterns which select the source files that should be
   # added to the Pods project. If the pattern is a directory then the
   # path will automatically have '*.{h,m,mm,c,cpp}' appended.
   #
-  s.source_files = 'Classes', 'Classes/**/*.{h,m}'
+  s.source_files = 'Classes', '**/*.{h,m}'
   s.exclude_files = 'Classes/Exclude'
 
   # A list of file patterns which select the header files that should be

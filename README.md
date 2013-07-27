@@ -1,4 +1,4 @@
-mas-attributes
+MASAttributes
 ==============
 
 NSMutableAttributedString helper for easy to add attributes for the substring.

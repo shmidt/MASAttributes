@@ -10,70 +10,72 @@
 @implementation NSMutableAttributedString (Attributes)
 - (void)addColor:(UIColor *)color substring:(NSString *)substring{
     NSRange range = [self.string rangeOfString:substring];
-    if (range.location != NSNotFound) {
-    [self addAttribute:NSForegroundColorAttributeName
-                            value:color
-                            range:range];
+    if (range.location != NSNotFound && color != nil) {
+        [self addAttribute:NSForegroundColorAttributeName
+                     value:color
+                     range:range];
     }
 }
 - (void)addBackgroundColor:(UIColor *)color substring:(NSString *)substring{
     NSRange range = [self.string rangeOfString:substring];
     if (range.location != NSNotFound) {
-    [self addAttribute:NSBackgroundColorAttributeName
-                 value:color
-                 range:range];
+        [self addAttribute:NSBackgroundColorAttributeName
+                     value:color
+                     range:range];
     }
 }
 - (void)addUnderlineForSubstring:(NSString *)substring{
     NSRange range = [self.string rangeOfString:substring];
     if (range.location != NSNotFound) {
-    [self addAttribute: NSUnderlineStyleAttributeName
-                       value:@(NSUnderlineStyleSingle)
-                       range:range];
+        [self addAttribute: NSUnderlineStyleAttributeName
+                     value:@(NSUnderlineStyleSingle)
+                     range:range];
     }
 }
 - (void)addStrikeThrough:(int)thickness substring:(NSString *)substring{
     NSRange range = [self.string rangeOfString:substring];
     if (range.location != NSNotFound) {
-    [self addAttribute: NSStrikethroughStyleAttributeName
-                 value:@(thickness)
-                 range:range];
+        [self addAttribute: NSStrikethroughStyleAttributeName
+                     value:@(thickness)
+                     range:range];
     }
 }
 - (void)addShadowColor:(UIColor *)color width:(int)width height:(int)height radius:(int)radius substring:(NSString *)substring{
     NSRange range = [self.string rangeOfString:substring];
-    if (range.location != NSNotFound) {
-    NSShadow *shadow = [[NSShadow alloc] init];
-    [shadow setShadowColor:color];
-    [shadow setShadowOffset:CGSizeMake (width, height)];
-    [shadow setShadowBlurRadius:radius];
-    
-    [self addAttribute: NSShadowAttributeName
-                 value:shadow
-                 range:range];
+    if (range.location != NSNotFound && color != nil) {
+        NSShadow *shadow = [[NSShadow alloc] init];
+        [shadow setShadowColor:color];
+        [shadow setShadowOffset:CGSizeMake (width, height)];
+        [shadow setShadowBlurRadius:radius];
+        
+        [self addAttribute: NSShadowAttributeName
+                     value:shadow
+                     range:range];
     }
 }
 - (void)addFontWithName:(NSString *)fontName size:(int)fontSize substring:(NSString *)substring{
     NSRange range = [self.string rangeOfString:substring];
-    if (range.location != NSNotFound) {
-    UIFont * font = [UIFont fontWithName:fontName size:fontSize];
-    [self addAttribute: NSFontAttributeName
-                 value:font
-                 range:range];
+    if (range.location != NSNotFound && fontName != nil) {
+        UIFont * font = [UIFont fontWithName:fontName size:fontSize];
+        [self addAttribute: NSFontAttributeName
+                     value:font
+                     range:range];
     }
 }
 - (void)addAlignment:(NSTextAlignment)alignment substring:(NSString *)substring{
     NSRange range = [self.string rangeOfString:substring];
     if (range.location != NSNotFound) {
-    NSMutableParagraphStyle* style=[[NSMutableParagraphStyle alloc]init];
-    style.alignment = alignment;
-    [self addAttribute: NSParagraphStyleAttributeName
-                 value:style
-                 range:range];
+        NSMutableParagraphStyle* style=[[NSMutableParagraphStyle alloc]init];
+        style.alignment = alignment;
+        [self addAttribute: NSParagraphStyleAttributeName
+                     value:style
+                     range:range];
     }
 }
 - (void)addColorToRussianText:(UIColor *)color{
-
+    
+    if(color == nil) return;
+    
     NSCharacterSet * set = [NSCharacterSet characterSetWithCharactersInString:@"абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"];
     
     NSRange searchRange = NSMakeRange(0,self.string.length);
@@ -85,7 +87,7 @@
             [self addAttribute:NSForegroundColorAttributeName
                          value:color
                          range:foundRange];
-
+            
             searchRange.location = foundRange.location+1;
             
         } else {
@@ -96,21 +98,21 @@
 }
 - (void)addStrokeColor:(UIColor *)color thickness:(int)thickness substring:(NSString *)substring{
     NSRange range = [self.string rangeOfString:substring];
-    if (range.location != NSNotFound) {
-    [self addAttribute:NSStrokeColorAttributeName
-                 value:color
-                 range:range];
-    [self addAttribute:NSStrokeWidthAttributeName
-                 value:@(thickness)
-                 range:range];
+    if (range.location != NSNotFound && color != nil) {
+        [self addAttribute:NSStrokeColorAttributeName
+                     value:color
+                     range:range];
+        [self addAttribute:NSStrokeWidthAttributeName
+                     value:@(thickness)
+                     range:range];
     }
 }
 - (void)addVerticalGlyph:(BOOL)glyph substring:(NSString *)substring{
     NSRange range = [self.string rangeOfString:substring];
     if (range.location != NSNotFound) {
-    [self addAttribute:NSForegroundColorAttributeName
-                 value:@(glyph)
-                 range:range];
+        [self addAttribute:NSForegroundColorAttributeName
+                     value:@(glyph)
+                     range:range];
     }
 }
 

@@ -62,6 +62,14 @@
                      range:range];
     }
 }
+- (void)addFont:(UIFont *)font substring:(NSString *)substring {
+    NSRange range = [self.string rangeOfString:substring];
+    if (range.location != NSNotFound && font != nil) {
+        [self addAttribute: NSFontAttributeName
+                     value:font
+                     range:range];
+    }
+}
 - (void)addAlignment:(NSTextAlignment)alignment substring:(NSString *)substring{
     NSRange range = [self.string rangeOfString:substring];
     if (range.location != NSNotFound) {

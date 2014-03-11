@@ -6,10 +6,19 @@
 //  Copyright (c) 2013 Shmidt Lab. All rights reserved.
 //
 #import "NSMutableAttributedString+Attributes.h"
+@interface NSString(MyExtensions)
+-(NSRange)rangeOfStringNoCase:(NSString*)s;
+@end
 
+@implementation NSString(MyExtensions)
+-(NSRange)rangeOfStringNoCase:(NSString*)s
+{
+    return  [self rangeOfString:s options:NSCaseInsensitiveSearch];
+}
+@end
 @implementation NSMutableAttributedString (Attributes)
 - (void)addColor:(UIColor *)color substring:(NSString *)substring{
-    NSRange range = [self.string rangeOfString:substring];
+    NSRange range = [self.string rangeOfStringNoCase:substring];
     if (range.location != NSNotFound && color != nil) {
         [self addAttribute:NSForegroundColorAttributeName
                      value:color
@@ -17,7 +26,7 @@
     }
 }
 - (void)addBackgroundColor:(UIColor *)color substring:(NSString *)substring{
-    NSRange range = [self.string rangeOfString:substring];
+    NSRange range = [self.string rangeOfStringNoCase:substring];
     if (range.location != NSNotFound) {
         [self addAttribute:NSBackgroundColorAttributeName
                      value:color
@@ -25,7 +34,7 @@
     }
 }
 - (void)addUnderlineForSubstring:(NSString *)substring{
-    NSRange range = [self.string rangeOfString:substring];
+    NSRange range = [self.string rangeOfStringNoCase:substring];
     if (range.location != NSNotFound) {
         [self addAttribute: NSUnderlineStyleAttributeName
                      value:@(NSUnderlineStyleSingle)
@@ -33,7 +42,7 @@
     }
 }
 - (void)addStrikeThrough:(int)thickness substring:(NSString *)substring{
-    NSRange range = [self.string rangeOfString:substring];
+    NSRange range = [self.string rangeOfStringNoCase:substring];
     if (range.location != NSNotFound) {
         [self addAttribute: NSStrikethroughStyleAttributeName
                      value:@(thickness)
@@ -41,7 +50,7 @@
     }
 }
 - (void)addShadowColor:(UIColor *)color width:(int)width height:(int)height radius:(int)radius substring:(NSString *)substring{
-    NSRange range = [self.string rangeOfString:substring];
+    NSRange range = [self.string rangeOfStringNoCase:substring];
     if (range.location != NSNotFound && color != nil) {
         NSShadow *shadow = [[NSShadow alloc] init];
         [shadow setShadowColor:color];
@@ -54,7 +63,7 @@
     }
 }
 - (void)addFontWithName:(NSString *)fontName size:(int)fontSize substring:(NSString *)substring{
-    NSRange range = [self.string rangeOfString:substring];
+    NSRange range = [self.string rangeOfStringNoCase:substring];
     if (range.location != NSNotFound && fontName != nil) {
         UIFont * font = [UIFont fontWithName:fontName size:fontSize];
         [self addAttribute: NSFontAttributeName
@@ -63,7 +72,7 @@
     }
 }
 - (void)addFont:(UIFont *)font substring:(NSString *)substring {
-    NSRange range = [self.string rangeOfString:substring];
+    NSRange range = [self.string rangeOfStringNoCase:substring];
     if (range.location != NSNotFound && font != nil) {
         [self addAttribute: NSFontAttributeName
                      value:font
@@ -71,7 +80,7 @@
     }
 }
 - (void)addAlignment:(NSTextAlignment)alignment substring:(NSString *)substring{
-    NSRange range = [self.string rangeOfString:substring];
+    NSRange range = [self.string rangeOfStringNoCase:substring];
     if (range.location != NSNotFound) {
         NSMutableParagraphStyle* style=[[NSMutableParagraphStyle alloc]init];
         style.alignment = alignment;
@@ -105,7 +114,7 @@
     }
 }
 - (void)addStrokeColor:(UIColor *)color thickness:(int)thickness substring:(NSString *)substring{
-    NSRange range = [self.string rangeOfString:substring];
+    NSRange range = [self.string rangeOfStringNoCase:substring];
     if (range.location != NSNotFound && color != nil) {
         [self addAttribute:NSStrokeColorAttributeName
                      value:color
@@ -116,7 +125,7 @@
     }
 }
 - (void)addVerticalGlyph:(BOOL)glyph substring:(NSString *)substring{
-    NSRange range = [self.string rangeOfString:substring];
+    NSRange range = [self.string rangeOfStringNoCase:substring];
     if (range.location != NSNotFound) {
         [self addAttribute:NSForegroundColorAttributeName
                      value:@(glyph)

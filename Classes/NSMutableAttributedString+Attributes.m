@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Shmidt Lab. All rights reserved.
 //
 #import "NSMutableAttributedString+Attributes.h"
-@interface NSString(MyExtensions)
+@interface NSString(MASAttributes)
 -(NSRange)rangeOfStringNoCase:(NSString*)s;
 @end
 
-@implementation NSString(MyExtensions)
+@implementation NSString(MASAttributes)
 -(NSRange)rangeOfStringNoCase:(NSString*)s
 {
     return  [self rangeOfString:s options:NSCaseInsensitiveSearch];
@@ -27,7 +27,7 @@
 }
 - (void)addBackgroundColor:(UIColor *)color substring:(NSString *)substring{
     NSRange range = [self.string rangeOfStringNoCase:substring];
-    if (range.location != NSNotFound) {
+    if (range.location != NSNotFound && color != nil) {
         [self addAttribute:NSBackgroundColorAttributeName
                      value:color
                      range:range];

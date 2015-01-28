@@ -6,6 +6,12 @@
 //  Copyright (c) 2013 Shmidt Lab. All rights reserved.
 //
 
+#ifdef __MAC_OS_X_VERSION_MIN_REQUIRED
+typedef NSFont UIFont;
+typedef NSColor UIColor;
+#endif
+
+
 #import <Foundation/Foundation.h>
 
 @interface NSMutableAttributedString (Attributes)
